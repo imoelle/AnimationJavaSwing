@@ -140,8 +140,19 @@ public class PVector2D {
         this.yPosition = yPosition;
     }
 
+    //=========================================================================
+    // Overwritten methods
+    //=========================================================================
+
     @Override
     public boolean equals(Object thatObject) {
+        if(thatObject instanceof PVector2D) {
+
+            PVector2D that = (PVector2D) thatObject;
+
+            return (this.xPosition == that.xPosition) &&
+                   (this.yPosition == that.yPosition);
+        }
         return false;
     }
 
