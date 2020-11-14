@@ -141,8 +141,8 @@ public class PVector2D {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object thatObject) {
+        return false;
     }
 
     @Override
