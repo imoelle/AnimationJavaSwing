@@ -119,7 +119,8 @@ public class PVector2D {
 
     private double angleInRadianTo(PVector2D theOther) {
         if (this.dotProductMagnitude(theOther) != 0) {
-            return Math.acos(this.dotProduct(theOther) / this.dotProductMagnitude(theOther));
+            return Math.acos(this.dotProduct(theOther) /
+                    this.dotProductMagnitude(theOther));
         }
         return 0;
     }
@@ -146,12 +147,10 @@ public class PVector2D {
 
     @Override
     public boolean equals(Object thatObject) {
-        if(thatObject instanceof PVector2D) {
-
+        if (thatObject instanceof PVector2D) {
             PVector2D that = (PVector2D) thatObject;
-
             return (this.xPosition == that.xPosition) &&
-                   (this.yPosition == that.yPosition);
+                    (this.yPosition == that.yPosition);
         }
         return false;
     }
