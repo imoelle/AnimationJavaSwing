@@ -13,7 +13,8 @@ package waterworld.utilities;
  * erledigt: mag() — calculate the magnitude of a vector
  * erledigt: normalize() — normalize the vector to a unit length of 1
  * heading() — the 2D heading of a vector expressed as an angle (PVector.X = cos(phi), PVector.y = sin(phi))
- * heading ist der Winkel von null (y-Achse) (0°/360°) zum Vector...
+ * Heading (Peilung) is the angle in degree (clockwise) and the destination
+ * Bearing (relative Peilung) is the angle in degree between the heading and the destination
  * rotate() — rotate a 2D vector by an angle (x' = x*cos(phi) - y*sin(phi), y' = y*sin(phi) +  y*cos(phi))
  * lerp() — linear interpolate to another vector (1-% -> x*(1-%) & y*(1-%))
  * dist() — the Euclidean distance between two vectors (considered as points) d(p,q) = sqrt((q1-p1)²+(q2-p2)²)
