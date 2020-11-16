@@ -113,11 +113,19 @@ public class PVector2D {
         return 0;
     }
 
+    public PVector2D headingVector(PVector2D influence) {
+        return new PVector2D();
+    }
+
     public double headingAngel(PVector2D influence) {
 
-        double angleAsValue = 0.0;
+        double angleAsValue = 0.0; 
+        PVector2D pvectorResult = this.addAndCreate(influence);
+        System.out.println("HeadingVector: " + pvectorResult.toString());
+        angleAsValue = influence.hasMagnitude() / this.hasMagnitude();
+        System.out.println("HeadingAngleInDegree: " + Math.toDegrees(Math.atan(angleAsValue)));
 
-        
+
 
         return 0;
     }

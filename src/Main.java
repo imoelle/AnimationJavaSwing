@@ -15,6 +15,11 @@ public class Main {
         PVector2D b = new PVector2D(3, 4);
         PVector2D c = new PVector2D(0, 0);
 
+        PVector2D richtung = new PVector2D(-3, 5);
+        PVector2D wind = new PVector2D(-2, -1);
+        richtung.headingAngel(wind);
+
+
         System.out.println("Scalarprodukt (a, b): " + a.dotProduct(b));
         System.out.println("Winkel (a, c): " + a.hasAngleToInDegrees(c)); // throws aritmetic exception
         System.out.println("a length: " + a.hasMagnitude());
