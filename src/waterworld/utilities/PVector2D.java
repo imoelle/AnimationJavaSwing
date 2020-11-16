@@ -83,7 +83,7 @@ public class PVector2D {
 
 
     //=========================================================================
-    // PVector2D specific operations
+    // public PVector2D specific operations
     //=========================================================================
 
     public final double dotProduct(PVector2D theOther) {
@@ -105,7 +105,28 @@ public class PVector2D {
                 this.yPosition * (1 / magnitude));
     }
 
-    private final double vectorSquareFrom(PVector2D vector) {
+    public final double angleInRadianTo(PVector2D theOther) {
+        if (this.dotProductMagnitude(theOther) != 0) {
+            return Math.acos(this.dotProduct(theOther) /
+                    this.dotProductMagnitude(theOther));
+        }
+        return 0;
+    }
+
+    public double headingAngel(PVector2D influence) {
+
+        double angleAsValue = 0.0;
+
+        
+
+        return 0;
+    }
+
+    //=========================================================================
+    // private PVector2D specific operations
+    //=========================================================================
+
+    private double vectorSquareFrom(PVector2D vector) {
         return vector.xPosition * vector.xPosition +
                 vector.yPosition * vector.yPosition;
     }
@@ -118,15 +139,11 @@ public class PVector2D {
         return this.hasMagnitude() * vector.hasMagnitude();
     }
 
-    private double angleInRadianTo(PVector2D theOther) {
-        if (this.dotProductMagnitude(theOther) != 0) {
-            return Math.acos(this.dotProduct(theOther) /
-                    this.dotProductMagnitude(theOther));
-        }
-        return 0;
-    }
+    //=========================================================================
+    // getter and setter
+    //=========================================================================
 
-    public double getPositionX() {
+    public final double getPositionX() {
         return this.xPosition;
     }
 
@@ -134,7 +151,7 @@ public class PVector2D {
         this.xPosition = xPosition;
     }
 
-    public double getPositionY() {
+    public final double getPositionY() {
         return this.yPosition;
     }
 
