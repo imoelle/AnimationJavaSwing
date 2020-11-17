@@ -17,7 +17,9 @@ public class Main {
 
         PVector2D richtung = new PVector2D(-3, 5);
         PVector2D wind = new PVector2D(-2, -1);
-        richtung.headingAngel(wind);
+        System.out.println("HeadingAngle: " + richtung.headingAngel(wind));
+        System.out.println("HeadingVector: " + richtung.headingVector(wind));
+
 
 
         System.out.println("Scalarprodukt (a, b): " + a.dotProduct(b));
@@ -26,5 +28,6 @@ public class Main {
         System.out.println("b length: " + b.hasMagnitude());
         System.out.println("Winkel (a, b): " + a.hasAngleToInDegrees(b));
         System.out.println("normieren von b: " + b.normalize().toString());
+
     }
 }
