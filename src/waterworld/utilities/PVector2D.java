@@ -13,7 +13,7 @@ package waterworld.utilities;
  * erledigt: mag() — calculate the magnitude of a vector
  * erledigt: normalize() — normalize the vector to a unit length of 1
  * erledigt: heading() — the 2D heading of a vector expressed as an angle (PVector.X = cos(phi), PVector.y = sin(phi))
- *           Heading (Peilung) is the angle in degree (clockwise) and the destination
+ * Heading (Peilung) is the angle in degree (clockwise) and the destination
  * relative Bearing (relative Peilung) is the angle in degree between the heading and the destination
  * bearing is the angle between north (orientation) to destination.
  * rotate() — rotate a 2D vector by an angle (x' = x*cos(phi) - y*sin(phi), y' = y*sin(phi) +  y*cos(phi))
@@ -73,17 +73,16 @@ public class PVector2D {
     }
 
     public void dividedBy(double scalar) {
-        if(scalar != 0) {
-            this.xPosition /= scalar;
-            this.yPosition /= scalar;
-        } else throw new IllegalArgumentException("PVector2D: Division by zero");
+//        testIfNotEqualZero(scalar);
+        this.xPosition /= scalar;
+        this.yPosition /= scalar;
     }
 
     public final PVector2D divideAndCreate(double scalar) {
-        if(scalar != 0)
+        if(this.notEqualZero(scalar)) {
             return new PVector2D(this.xPosition / scalar,
                     this.yPosition / scalar);
-        else throw new IllegalArgumentException("PVector2D: Division by zero");
+        }
     }
 
     //=========================================================================
@@ -145,6 +144,11 @@ public class PVector2D {
 
     private double dotProductMagnitude(PVector2D vector) {
         return this.hasMagnitude() * vector.hasMagnitude();
+    }
+
+    private boolean notEqualZero(double value) {
+        if (value != 0) return true;
+        else throw new IllegalArgumentException("PVector2D: Division by zero");
     }
 
     //=========================================================================
