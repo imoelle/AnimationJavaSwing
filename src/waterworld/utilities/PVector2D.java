@@ -14,8 +14,6 @@ package waterworld.utilities;
  * erledigt: normalize() — normalize the vector to a unit length of 1
  * erledigt: heading() — the 2D heading of a vector expressed as an angle (PVector.X = cos(phi), PVector.y = sin(phi))
  * Heading (Peilung) is the angle in degree (clockwise) and the destination
- * relative Bearing (relative Peilung) is the angle in degree between the heading and the destination
- * bearing is the angle between north (orientation) to destination.
  * rotate() — rotate a 2D vector by an angle (x' = x*cos(phi) - y*sin(phi), y' = y*sin(phi) +  y*cos(phi))
  * lerp() — linear interpolate to another vector (1-% -> x*(1-%) & y*(1-%))
  * dist() — the Euclidean distance between two vectors (considered as points) d(p,q) = sqrt((q1-p1)²+(q2-p2)²)
@@ -97,7 +95,7 @@ public class PVector2D {
         return Math.sqrt(vectorSquareFrom(this));
     }
 
-    public final double hasAngleToInDegrees(PVector2D theOther) {
+    public final double angleInDegreeTo(PVector2D theOther) {
         return Math.toDegrees(this.angleInRadianTo(theOther));
     }
 
@@ -117,7 +115,7 @@ public class PVector2D {
         return this.addAndCreate(influence);
     }
 
-    public double headingAngel(PVector2D influence) {
+    public double hasHeadingAngle(PVector2D influence) {
 
         double angleAsValue = 0.0;
         angleAsValue = influence.hasMagnitude() / this.hasMagnitude();
@@ -125,7 +123,19 @@ public class PVector2D {
 
         return Math.toDegrees(angleAsValue);
     }
+    /* rotate() — rotate a 2D vector by an angle (x' = x*cos(phi) - y*sin(phi), y' = y*sin(phi) +  y*cos(phi))*/
+    public void rotateByAngle(double angle) {
+        double temp = Math.toRadians(angle);
 
+        System.out.println("cos(30): " + 3*Math.cos(temp));
+        System.out.println("sin(30): " + 4*Math.sin(temp));
+
+        PVector2D test = new PVector2D((this.xPosition*Math.cos(temp)) - (this.yPosition*Math.sin(temp)),
+                (this.xPosition*Math.sin(temp)) + (this.yPosition*Math.cos(temp)));
+
+        System.out.println("rotierter Vector: " + test.toString());
+
+    }
     //=========================================================================
     // private PVector2D specific operations
     //=========================================================================
