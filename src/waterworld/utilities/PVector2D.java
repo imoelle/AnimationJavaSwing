@@ -73,16 +73,15 @@ public class PVector2D {
     }
 
     public void dividedBy(double scalar) {
-//        testIfNotEqualZero(scalar);
+        checkForNotEqualZero(scalar);
         this.xPosition /= scalar;
         this.yPosition /= scalar;
     }
 
     public final PVector2D divideAndCreate(double scalar) {
-        if(this.notEqualZero(scalar)) {
-            return new PVector2D(this.xPosition / scalar,
-                    this.yPosition / scalar);
-        }
+        checkForNotEqualZero(scalar);
+        return new PVector2D(this.xPosition / scalar,
+                this.yPosition / scalar);
     }
 
     //=========================================================================
@@ -109,11 +108,9 @@ public class PVector2D {
     }
 
     public final double angleInRadianTo(PVector2D theOther) {
-        if (this.dotProductMagnitude(theOther) != 0) {
-            return Math.acos(this.dotProduct(theOther) /
-                    this.dotProductMagnitude(theOther));
-        }
-        return 0;
+        checkForNotEqualZero(this.dotProductMagnitude(theOther));
+        return Math.acos(this.dotProduct(theOther) /
+                this.dotProductMagnitude(theOther));
     }
 
     public PVector2D headingVector(PVector2D influence) {
@@ -146,8 +143,8 @@ public class PVector2D {
         return this.hasMagnitude() * vector.hasMagnitude();
     }
 
-    private boolean notEqualZero(double value) {
-        if (value != 0) return true;
+    private void checkForNotEqualZero(double value) {
+        if (value != 0) return;
         else throw new IllegalArgumentException("PVector2D: Division by zero");
     }
 
