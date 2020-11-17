@@ -12,9 +12,10 @@ package waterworld.utilities;
  * erledigt: div() — scale the vector with division
  * erledigt: mag() — calculate the magnitude of a vector
  * erledigt: normalize() — normalize the vector to a unit length of 1
- * heading() — the 2D heading of a vector expressed as an angle (PVector.X = cos(phi), PVector.y = sin(phi))
- * Heading (Peilung) is the angle in degree (clockwise) and the destination
- * Bearing (relative Peilung) is the angle in degree between the heading and the destination
+ * erledigt: heading() — the 2D heading of a vector expressed as an angle (PVector.X = cos(phi), PVector.y = sin(phi))
+ *           Heading (Peilung) is the angle in degree (clockwise) and the destination
+ * relative Bearing (relative Peilung) is the angle in degree between the heading and the destination
+ * bearing is the angle between north (orientation) to destination.
  * rotate() — rotate a 2D vector by an angle (x' = x*cos(phi) - y*sin(phi), y' = y*sin(phi) +  y*cos(phi))
  * lerp() — linear interpolate to another vector (1-% -> x*(1-%) & y*(1-%))
  * dist() — the Euclidean distance between two vectors (considered as points) d(p,q) = sqrt((q1-p1)²+(q2-p2)²)
@@ -72,15 +73,18 @@ public class PVector2D {
     }
 
     public void dividedBy(double scalar) {
-        this.xPosition /= scalar;
-        this.yPosition /= scalar;
+        if(scalar != 0) {
+            this.xPosition /= scalar;
+            this.yPosition /= scalar;
+        } else throw new IllegalArgumentException("PVector2D: Division by zero");
     }
 
     public final PVector2D divideAndCreate(double scalar) {
-        return new PVector2D(this.xPosition / scalar,
-                this.yPosition / scalar);
+        if(scalar != 0)
+            return new PVector2D(this.xPosition / scalar,
+                    this.yPosition / scalar);
+        else throw new IllegalArgumentException("PVector2D: Division by zero");
     }
-
 
     //=========================================================================
     // public PVector2D specific operations
