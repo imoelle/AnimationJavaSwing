@@ -3,20 +3,12 @@ package waterworld.utilities;
 
 /**
  * Operations to be implemented:
- * erledigt: add() — add vectors
- * erledigt: add() - Vector als Rückgabe
- * erledigt: sub() — subtract vectors
- * erledigt: sub() - Vector als rückgabe
- * erledigt: mult() — scale the vector with multiplication
- * erledigt: mult() - rückgabe scaled vector
- * erledigt: div() — scale the vector with division
- * erledigt: mag() — calculate the magnitude of a vector
- * erledigt: normalize() — normalize the vector to a unit length of 1
- * erledigt: heading() — the 2D heading of a vector expressed as an angle (PVector.X = cos(phi), PVector.y = sin(phi))
- * Heading (Peilung) is the angle in degree (clockwise) and the destination
  * rotate() — rotate a 2D vector by an angle (x' = x*cos(phi) - y*sin(phi), y' = y*sin(phi) +  y*cos(phi))
  * lerp() — linear interpolate to another vector (1-% -> x*(1-%) & y*(1-%))
  * dist() — the Euclidean distance between two vectors (considered as points) d(p,q) = sqrt((q1-p1)²+(q2-p2)²)
+ * <p>
+ * todo:    method checkForNotEqualZero has to be refactored. Unsightly solution has to be changed.
+ * runs first...
  */
 public class PVector2D {
     private double xPosition;
@@ -95,7 +87,7 @@ public class PVector2D {
         return Math.sqrt(vectorSquareFrom(this));
     }
 
-    public final double angleInDegreeTo(PVector2D theOther) {
+    public final double angleInDegreesTo(PVector2D theOther) {
         return Math.toDegrees(this.angleInRadianTo(theOther));
     }
 
@@ -116,29 +108,28 @@ public class PVector2D {
     }
 
     public double hasHeadingAngle(PVector2D influence) {
-
-        double angleAsValue = 0.0;
-        angleAsValue = influence.hasMagnitude() / this.hasMagnitude();
-
-
-        return Math.toDegrees(angleAsValue);
+        return Math.toDegrees(influence.hasMagnitude() /
+                this.hasMagnitude());
     }
-    /* rotate() — rotate a 2D vector by an angle (x' = x*cos(phi) - y*sin(phi), y' = y*sin(phi) +  y*cos(phi))*/
-    public void rotateByAngle(double angle) {
-        double temp = Math.toRadians(angle);
 
-        System.out.println("cos(30): " + 3*Math.cos(temp));
-        System.out.println("sin(30): " + 4*Math.sin(temp));
-
-        PVector2D test = new PVector2D((this.xPosition*Math.cos(temp)) - (this.yPosition*Math.sin(temp)),
-                (this.xPosition*Math.sin(temp)) + (this.yPosition*Math.cos(temp)));
-
-        System.out.println("rotierter Vector: " + test.toString());
-
+    public PVector2D rotateByAngle(double angleInDegrees) {
+        double angle = Math.toRadians(angleInDegrees);
+        return new PVector2D(this.xTurnedBy(angle),
+                this.yTurnedBy(angle));
     }
     //=========================================================================
     // private PVector2D specific operations
     //=========================================================================
+
+    private double xTurnedBy(double angleInRadians) {
+        return this.xPosition * Math.cos(angleInRadians) -
+                this.yPosition * Math.sin(angleInRadians);
+    }
+
+    private double yTurnedBy(double angleInRadians) {
+        return this.xPosition * Math.sin(angleInRadians) +
+                this.yPosition * Math.cos(angleInRadians);
+    }
 
     private double vectorSquareFrom(PVector2D vector) {
         return vector.xPosition * vector.xPosition +
@@ -153,6 +144,8 @@ public class PVector2D {
         return this.hasMagnitude() * vector.hasMagnitude();
     }
 
+    // unsightly solution, has to be changed!
+    // runs first
     private void checkForNotEqualZero(double value) {
         if (value != 0) return;
         else throw new IllegalArgumentException("PVector2D: Division by zero");
