@@ -15,6 +15,9 @@ public class Main {
         PVector2D b = new PVector2D(3, 4);
         PVector2D c = new PVector2D(4.5, 2);
 
+        PVector2D lerpA = new PVector2D(-2, 2);
+        PVector2D lerpB = new PVector2D(5.5, 4);
+
         PVector2D richtung = new PVector2D(-3, 5);
         PVector2D wind = new PVector2D(-2, -1);
         System.out.println("HeadingAngle: " + richtung.hasHeadingAngle(wind));
@@ -28,5 +31,7 @@ public class Main {
 
         System.out.println("Hier wird die rotation berechnet (90°): " + a.rotateByAngle(90).toString());
         System.out.println("Hier wird die rotation berechnet (270°): " + a.rotateByAngle(270).toString());
+
+
     }
 }

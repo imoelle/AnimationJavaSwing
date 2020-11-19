@@ -3,8 +3,13 @@ package waterworld.utilities;
 
 /**
  * Operations to be implemented:
- * rotate() — rotate a 2D vector by an angle (x' = x*cos(phi) - y*sin(phi), y' = y*sin(phi) +  y*cos(phi))
  * lerp() — linear interpolate to another vector (1-% -> x*(1-%) & y*(1-%))
+ *
+ * // Präzise Methode, die v = v1 garantiert, wenn t = 1. Diese Methode ist nur dann monoton, wenn v0 * v1 <0. Das Lerping zwischen denselben Werten führt möglicherweise nicht zu demselben Wert
+ * float  lerp ( float  vectorStart ,  float  vectorTarget ,  float  alpha in % )  {
+ *   return  ( 1  -  alpha )  *  vectorStart  +  alpha  *  vectorTarget ;
+ * }}
+ *
  * dist() — the Euclidean distance between two vectors (considered as points) d(p,q) = sqrt((q1-p1)²+(q2-p2)²)
  * <p>
  * todo:    method checkForNotEqualZero has to be refactored. Unsightly solution has to be changed.
@@ -116,6 +121,14 @@ public class PVector2D {
         double angle = Math.toRadians(angleInDegrees);
         return new PVector2D(this.xTurnedBy(angle),
                 this.yTurnedBy(angle));
+    }
+
+    public PVector2D lerp(PVector2D origin, PVector2D target, double alpha) {
+        // (1-alpha)*origin + alpha* target
+        // PVector hat x und y
+        PVector2D a = new PVector2D(origin.xPosition * (1-alpha), origin.yPosition*(1-alpha));
+        PVector2D b = new PVector2D(target.xPosition*alpha, target.yPosition*alpha);
+        return a.addAndCreate(b);
     }
     //=========================================================================
     // private PVector2D specific operations
