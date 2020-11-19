@@ -123,11 +123,13 @@ public class PVector2D {
                 this.yTurnedBy(angle));
     }
 
-    public PVector2D lerp(PVector2D origin, PVector2D target, double alpha) {
+    public PVector2D lerp(PVector2D target, double alpha) {
         // (1-alpha)*origin + alpha* target
         // PVector hat x und y
-        PVector2D a = new PVector2D(origin.xPosition * (1-alpha), origin.yPosition*(1-alpha));
-        PVector2D b = new PVector2D(target.xPosition*alpha, target.yPosition*alpha);
+        PVector2D a = new PVector2D(Math.round(this.xPosition * (1-alpha)*1000.0)/1000.0, Math.rint(this.yPosition*(1-alpha)*1000.0)/1000.0);
+//        System.out.println("A in lerp: " + a.toString());
+        PVector2D b = new PVector2D(Math.round(target.xPosition*alpha*1000.0)/1000.0, Math.round(target.yPosition*alpha*1000.0)/1000.00);
+//        System.out.println("B in lerp: " + b.toString());
         return a.addAndCreate(b);
     }
     //=========================================================================

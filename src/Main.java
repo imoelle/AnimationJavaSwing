@@ -32,6 +32,16 @@ public class Main {
         System.out.println("Hier wird die rotation berechnet (90°): " + a.rotateByAngle(90).toString());
         System.out.println("Hier wird die rotation berechnet (270°): " + a.rotateByAngle(270).toString());
 
+        double d = 2.345345634434;
+        System.out.println("gerundeter double wert (2.345345634434): " + Math.rint(d*1000)/1000);
 
+        int i = 0;
+        double test = lerpB.getPositionX()-0.01;
+        while(lerpA.getPositionX() < test) {
+            lerpA = lerpA.lerp(lerpB, 0.2);
+            System.out.println(i + ". lineare Interpolation eines Vectors: " + lerpA.toString());
+            i++;
+
+        }
     }
 }
