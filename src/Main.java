@@ -15,8 +15,8 @@ public class Main {
         PVector2D b = new PVector2D(3, 4);
         PVector2D c = new PVector2D(4.5, 2);
 
-        PVector2D lerpA = new PVector2D(-2, 2);
-        PVector2D lerpB = new PVector2D(5.5, 4);
+        PVector2D lerpA = new PVector2D(4, 2);
+        PVector2D lerpB = new PVector2D(5, 3);
 
         PVector2D richtung = new PVector2D(-3, 5);
         PVector2D wind = new PVector2D(-2, -1);
@@ -32,15 +32,35 @@ public class Main {
         System.out.println("Hier wird die rotation berechnet (90°): " + a.rotateByAngle(90).toString());
         System.out.println("Hier wird die rotation berechnet (270°): " + a.rotateByAngle(270).toString());
 
-        double d = 2.345345634434;
-        System.out.println("gerundeter double wert (2.345345634434): " + Math.rint(d*1000)/1000);
+        double d1 = 2.3457345323013;
+        double d2 = 2.3457345323016;
+        System.out.println("Value after compare: " + Double.compare(d1, d2));
 
-        int i = 0;
-        double test = lerpB.getPositionX()-0.01;
-        while(lerpA.getPositionX() < test) {
-            lerpA = lerpA.lerp(lerpB, 0.2);
-            System.out.println(i + ". lineare Interpolation eines Vectors: " + lerpA.toString());
+//        if(retval > 0) {
+//            System.out.println("d1 is greater than d2: " + retval);
+//        } else if(retval < 0) {
+//            System.out.println("d1 is less than d2: " + retval);
+//        } else {
+//            System.out.println("d1 is equal to d2: " + retval);
+//        }
+
+//        System.out.println("gerundeter double wert (2.345345634434): " + Math.rint(d1*1000)/1000);
+
+        int i = 1;
+        double obereGrenze = lerpB.getPositionX();
+        double untereGrenze = lerpB.getPositionX()-0.002;
+        double epsilon = (obereGrenze+untereGrenze)/2;
+
+
+        while(lerpA.getPositionX() < epsilon) {
+            lerpA = lerpA.lerp(lerpB, 0.25);
+
+            System.out.println(i + " LerpA-Vector: " + lerpA.toString());
+            System.out.println("");
+
+
             i++;
+            //if(i > 20) break;
 
         }
     }

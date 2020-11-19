@@ -126,11 +126,21 @@ public class PVector2D {
     public PVector2D lerp(PVector2D target, double alpha) {
         // (1-alpha)*origin + alpha* target
         // PVector hat x und y
-        PVector2D a = new PVector2D(Math.round(this.xPosition * (1-alpha)*1000.0)/1000.0, Math.rint(this.yPosition*(1-alpha)*1000.0)/1000.0);
-//        System.out.println("A in lerp: " + a.toString());
-        PVector2D b = new PVector2D(Math.round(target.xPosition*alpha*1000.0)/1000.0, Math.round(target.yPosition*alpha*1000.0)/1000.00);
-//        System.out.println("B in lerp: " + b.toString());
-        return a.addAndCreate(b);
+
+        double a = this.xPosition*(1-alpha);
+        double b = this.yPosition*(1-alpha);
+        double c = target.xPosition*alpha;
+        double d = target.yPosition*alpha;
+
+//        System.out.println(" A: " + a);
+//        System.out.println(" B: " + b);
+//        System.out.println(" C: " + c);
+//        System.out.println(" D: " + d);
+
+        PVector2D ab = new PVector2D(a, b);
+        PVector2D cd = new PVector2D(c, d);
+
+        return ab.addAndCreate(cd);
     }
     //=========================================================================
     // private PVector2D specific operations
