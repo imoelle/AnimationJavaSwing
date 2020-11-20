@@ -124,10 +124,7 @@ public class PVector2D {
     }
 
     public PVector2D linearInterpolateTo(PVector2D target, double byFactor) {
-        PVector2D origin = berechneNeuenVector(this, 1-byFactor);
-        PVector2D finish = berechneNeuenVector(target, byFactor);
-
-        return origin.addAndCreate(finish);
+        return berechneNeuenVector(this, 1-byFactor).addAndCreate(berechneNeuenVector(target, byFactor));
     }
     //=========================================================================
     // private PVector2D specific operations
