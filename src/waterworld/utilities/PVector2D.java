@@ -124,15 +124,19 @@ public class PVector2D {
     }
 
     public PVector2D linearInterpolateTo(PVector2D target, double byFactor) {
-        PVector2D origin = new PVector2D(this.xPosition * (1 - byFactor),
-                this.yPosition * (1 - byFactor));
-        PVector2D finish = new PVector2D(target.xPosition * byFactor,
-                target.yPosition * byFactor);
+        PVector2D origin = berechneNeuenVector(this, 1-byFactor);
+        PVector2D finish = berechneNeuenVector(target, byFactor);
+
         return origin.addAndCreate(finish);
     }
     //=========================================================================
     // private PVector2D specific operations
     //=========================================================================
+
+    private PVector2D berechneNeuenVector(PVector2D test, double factor) {
+
+        return new PVector2D(test.xPosition*factor, test.yPosition*factor);
+    }
 
     private double xTurnedBy(double angleInRadians) {
         return this.xPosition * Math.cos(angleInRadians) -
