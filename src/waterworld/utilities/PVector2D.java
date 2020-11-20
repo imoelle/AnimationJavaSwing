@@ -4,12 +4,12 @@ package waterworld.utilities;
 /**
  * Operations to be implemented:
  * lerp() — linear interpolate to another vector (1-% -> x*(1-%) & y*(1-%))
- *
+ * <p>
  * // Präzise Methode, die v = v1 garantiert, wenn t = 1. Diese Methode ist nur dann monoton, wenn v0 * v1 <0. Das Lerping zwischen denselben Werten führt möglicherweise nicht zu demselben Wert
  * float  lerp ( float  vectorStart ,  float  vectorTarget ,  float  alpha in % )  {
- *   return  ( 1  -  alpha )  *  vectorStart  +  alpha  *  vectorTarget ;
+ * return  ( 1  -  alpha )  *  vectorStart  +  alpha  *  vectorTarget ;
  * }}
- *
+ * <p>
  * dist() — the Euclidean distance between two vectors (considered as points) d(p,q) = sqrt((q1-p1)²+(q2-p2)²)
  * <p>
  * todo:    method checkForNotEqualZero has to be refactored. Unsightly solution has to be changed.
@@ -123,24 +123,12 @@ public class PVector2D {
                 this.yTurnedBy(angle));
     }
 
-    public PVector2D lerp(PVector2D target, double alpha) {
-        // (1-alpha)*origin + alpha* target
-        // PVector hat x und y
-
-        double a = this.xPosition*(1-alpha);
-        double b = this.yPosition*(1-alpha);
-        double c = target.xPosition*alpha;
-        double d = target.yPosition*alpha;
-
-//        System.out.println(" A: " + a);
-//        System.out.println(" B: " + b);
-//        System.out.println(" C: " + c);
-//        System.out.println(" D: " + d);
-
-        PVector2D ab = new PVector2D(a, b);
-        PVector2D cd = new PVector2D(c, d);
-
-        return ab.addAndCreate(cd);
+    public PVector2D linearInterpolateTo(PVector2D target, double byFactor) {
+        PVector2D origin = new PVector2D(this.xPosition * (1 - byFactor),
+                this.yPosition * (1 - byFactor));
+        PVector2D finish = new PVector2D(target.xPosition * byFactor,
+                target.yPosition * byFactor);
+        return origin.addAndCreate(finish);
     }
     //=========================================================================
     // private PVector2D specific operations

@@ -47,16 +47,18 @@ public class Main {
 //        System.out.println("gerundeter double wert (2.345345634434): " + Math.rint(d1*1000)/1000);
 
         int i = 1;
-        double obereGrenze = lerpB.getPositionX();
-        double untereGrenze = lerpB.getPositionX()-0.002;
-        double epsilon = (obereGrenze+untereGrenze)/2;
+        double obereGrenzeX = lerpB.getPositionX();
+        double untereGrenzeX = lerpB.getPositionX()-0.002;
+        double epsilonX = (obereGrenzeX+untereGrenzeX)/2;
+        double obereGrenzeY = lerpB.getPositionY();
+        double untereGranzeY = lerpB.getPositionY()-0.002;
+        double epsilonY = (obereGrenzeY+untereGranzeY)/2;
 
 
-        while(lerpA.getPositionX() < epsilon) {
-            lerpA = lerpA.lerp(lerpB, 0.25);
+        while(lerpA.getPositionX() < epsilonX || lerpA.getPositionY() < epsilonY) {
+            lerpA = lerpA.linearInterpolateTo(lerpB, 0.50);
 
             System.out.println(i + " LerpA-Vector: " + lerpA.toString());
-            System.out.println("");
 
 
             i++;
