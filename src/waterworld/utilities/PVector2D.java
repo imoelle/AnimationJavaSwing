@@ -3,13 +3,6 @@ package waterworld.utilities;
 
 /**
  * Operations to be implemented:
- * lerp() — linear interpolate to another vector (1-% -> x*(1-%) & y*(1-%))
- * <p>
- * // Präzise Methode, die v = v1 garantiert, wenn t = 1. Diese Methode ist nur dann monoton, wenn v0 * v1 <0. Das Lerping zwischen denselben Werten führt möglicherweise nicht zu demselben Wert
- * float  lerp ( float  vectorStart ,  float  vectorTarget ,  float  alpha in % )  {
- * return  ( 1  -  alpha )  *  vectorStart  +  alpha  *  vectorTarget ;
- * }}
- * <p>
  * dist() — the Euclidean distance between two vectors (considered as points) d(p,q) = sqrt((q1-p1)²+(q2-p2)²)
  * <p>
  * todo:    method checkForNotEqualZero has to be refactored. Unsightly solution has to be changed.
@@ -93,7 +86,7 @@ public class PVector2D {
     }
 
     public final double angleInDegreesTo(PVector2D theOther) {
-        return Math.toDegrees(this.angleInRadianTo(theOther));
+        return Math.toDegrees(this.angleInRadiansTo(theOther));
     }
 
     public final PVector2D normalize() {
@@ -102,7 +95,7 @@ public class PVector2D {
                 this.yPosition * (1 / magnitude));
     }
 
-    public final double angleInRadianTo(PVector2D theOther) {
+    public final double angleInRadiansTo(PVector2D theOther) {
         checkForNotEqualZero(this.dotProductMagnitude(theOther));
         return Math.acos(this.dotProduct(theOther) /
                 this.dotProductMagnitude(theOther));
@@ -124,15 +117,27 @@ public class PVector2D {
     }
 
     public PVector2D linearInterpolateTo(PVector2D target, double byFactor) {
-        return berechneNeuenVector(this, 1-byFactor).addAndCreate(berechneNeuenVector(target, byFactor));
+        return getNewVectorBy(this, 1 - byFactor).
+                addAndCreate(getNewVectorBy(target, byFactor));
+    }
+
+    public double euclideanDistance(PVector2D first, PVector2D second) {
+
+        double pointA = second.xPosition - first.xPosition;
+        double pointB = second.yPosition - first.xPosition;
+
+        pointA *= pointA;
+        pointB *= pointB;
+
+        return Math.sqrt(pointA+pointB);
     }
     //=========================================================================
     // private PVector2D specific operations
     //=========================================================================
 
-    private PVector2D berechneNeuenVector(PVector2D test, double factor) {
-
-        return new PVector2D(test.xPosition*factor, test.yPosition*factor);
+    private PVector2D getNewVectorBy(PVector2D source, double andFactor) {
+        return new PVector2D(source.xPosition * andFactor,
+                source.yPosition * andFactor);
     }
 
     private double xTurnedBy(double angleInRadians) {
