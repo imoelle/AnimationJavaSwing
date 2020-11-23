@@ -2,11 +2,7 @@ package waterworld.utilities;
 
 
 /**
- * Operations to be implemented:
- * dist() — the Euclidean distance between two vectors (considered as points) d(p,q) = sqrt((q1-p1)²+(q2-p2)²)
- * <p>
- * todo:    method checkForNotEqualZero has to be refactored. Unsightly solution has to be changed.
- * runs first...
+ * todo:    method checkForNotEqualZero has to be refactored. Unsightly solution has to be changed, but run first.
  */
 public class PVector2D {
     private double xPosition;
@@ -121,16 +117,11 @@ public class PVector2D {
                 addAndCreate(getNewVectorBy(target, byFactor));
     }
 
-    public double euclideanDistance(PVector2D second) {
-
-        double pointA = second.xPosition - this.xPosition;
-        double pointB = second.yPosition - this.yPosition;
-
-        pointA *= pointA;
-        pointB *= pointB;
-
-        return Math.sqrt(pointA+pointB);
+    public double euclideanDistanceTo(PVector2D theOther) {
+        return Math.sqrt(squareOf(theOther.xPosition - this.xPosition) +
+                squareOf(theOther.yPosition - this.yPosition));
     }
+
     //=========================================================================
     // private PVector2D specific operations
     //=========================================================================
@@ -157,6 +148,10 @@ public class PVector2D {
 
     private double dotProductSquareFrom(PVector2D theOther) {
         return this.hasMagnitude() * theOther.hasMagnitude();
+    }
+
+    private double squareOf(double value) {
+        return value * value;
     }
 
     private double dotProductMagnitude(PVector2D vector) {

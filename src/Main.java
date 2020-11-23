@@ -36,21 +36,7 @@ public class Main {
         System.out.println("Hier wird die rotation berechnet (90°): " + a.rotateByAngle(90).toString());
         System.out.println("Hier wird die rotation berechnet (270°): " + a.rotateByAngle(270).toString());
 
-        System.out.println("euklidsche Distanz zwischen (-2, 2) & (5.5, 4): " + eDistA.euclideanDistance(eDistB));
-
-        double d1 = 2.3457345323013;
-        double d2 = 2.3457345323016;
-        System.out.println("Value after compare: " + Double.compare(d1, d2));
-
-//        if(retval > 0) {
-//            System.out.println("d1 is greater than d2: " + retval);
-//        } else if(retval < 0) {
-//            System.out.println("d1 is less than d2: " + retval);
-//        } else {
-//            System.out.println("d1 is equal to d2: " + retval);
-//        }
-
-//        System.out.println("gerundeter double wert (2.345345634434): " + Math.rint(d1*1000)/1000);
+        System.out.println("euklidsche Distanz zwischen (-2, 2) & (5.5, 4): " + eDistA.euclideanDistanceTo(eDistB));
 
         int i = 1;
         double obereGrenzeX = lerpB.getPositionX();
@@ -60,11 +46,11 @@ public class Main {
         double untereGranzeY = lerpB.getPositionY()-0.002;
         double epsilonY = (obereGrenzeY+untereGranzeY)/2;
 
-        double test = (eDistA.euclideanDistance(eDistB))/100;
+        double test = 1-(eDistA.euclideanDistanceTo(eDistB)/20);
         while(eDistA.getPositionX() < epsilonX || eDistA.getPositionY() < epsilonY) {
-            eDistA = eDistA.linearInterpolateTo(eDistB, test);
+            eDistA = eDistA.linearInterpolateTo(eDistB, 0.13);
 
-            System.out.println(i + " eDistA interpolate eDistB: " + eDistA.toString() + " euklid distance/100: " + test);
+            System.out.println(i + " eDistA interpolate eDistB: " + eDistA.toString() + " euklid distance/100: " +0.05);
 
 
             i++;
