@@ -121,10 +121,10 @@ public class PVector2D {
                 addAndCreate(getNewVectorBy(target, byFactor));
     }
 
-    public double euclideanDistance(PVector2D first, PVector2D second) {
+    public double euclideanDistance(PVector2D second) {
 
-        double pointA = second.xPosition - first.xPosition;
-        double pointB = second.yPosition - first.xPosition;
+        double pointA = second.xPosition - this.xPosition;
+        double pointB = second.yPosition - this.yPosition;
 
         pointA *= pointA;
         pointB *= pointB;

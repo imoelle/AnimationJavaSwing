@@ -20,6 +20,10 @@ public class Main {
 
         PVector2D richtung = new PVector2D(-3, 5);
         PVector2D wind = new PVector2D(-2, -1);
+
+        PVector2D eDistA = new PVector2D(-2, 2);
+        PVector2D eDistB = new PVector2D(5.5, 4);
+
         System.out.println("HeadingAngle: " + richtung.hasHeadingAngle(wind));
         System.out.println("HeadingVector: " + richtung.headingVector(wind));
 
@@ -31,6 +35,8 @@ public class Main {
 
         System.out.println("Hier wird die rotation berechnet (90°): " + a.rotateByAngle(90).toString());
         System.out.println("Hier wird die rotation berechnet (270°): " + a.rotateByAngle(270).toString());
+
+        System.out.println("euklidsche Distanz zwischen (-2, 2) & (5.5, 4): " + eDistA.euclideanDistance(eDistB));
 
         double d1 = 2.3457345323013;
         double d2 = 2.3457345323016;
@@ -54,15 +60,14 @@ public class Main {
         double untereGranzeY = lerpB.getPositionY()-0.002;
         double epsilonY = (obereGrenzeY+untereGranzeY)/2;
 
+        double test = (eDistA.euclideanDistance(eDistB))/100;
+        while(eDistA.getPositionX() < epsilonX || eDistA.getPositionY() < epsilonY) {
+            eDistA = eDistA.linearInterpolateTo(eDistB, test);
 
-        while(lerpA.getPositionX() < epsilonX || lerpA.getPositionY() < epsilonY) {
-            lerpA = lerpA.linearInterpolateTo(lerpB, 0.50);
-
-            System.out.println(i + " LerpA-Vector: " + lerpA.toString());
+            System.out.println(i + " eDistA interpolate eDistB: " + eDistA.toString() + " euklid distance/100: " + test);
 
 
             i++;
-            //if(i > 20) break;
 
         }
     }
