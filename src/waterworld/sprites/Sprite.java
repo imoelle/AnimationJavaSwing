@@ -17,9 +17,9 @@ import java.awt.*;
  *
  * Ein Sprite ist ein Kreis mit einem Radius bzw. Durchmesser - benötigt double oder int
  * Ein Sprite hat eine Textur, definiert durch ein Bild (GIF-Bild) - benötigt ImageLoader
- * Das Sprite hat eine Position (x, y) - benötigt Vector (Point2D) eigene Vector klasse bauen
- * Das Sprite hat eine Geschwindigkeit (x, y) - benötigt Vector (Point2D) eigene Vector klasse bauen
- * Das Sprite hat eine Beschleunigung (x, y) - benötigt Vector (Point2D) eigene Vector klasse bauen
+ * Das Sprite hat eine Position (x, y) - benötigt Vector (PVector2D) eigene Vector klasse
+ * Das Sprite hat eine Geschwindigkeit (x, y) - benötigt Vector (PVector2D) eigene Vector klasse
+ * Das Sprite hat eine Beschleunigung (x, y) - benötigt Vector (PVector2D) eigene Vector klasse
  * Das Sprite bewegt sich nur im vorgegebenen Raum (Rechteck) bestimmt durch
  * die Größe des Hintergrundbildes - Global Bounds
  *
@@ -85,5 +85,5 @@ public class Sprite {
     }
 
 
-    
+
 }
