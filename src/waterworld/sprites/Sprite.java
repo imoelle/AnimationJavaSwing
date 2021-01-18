@@ -64,15 +64,20 @@ import java.security.PublicKey;
  * 4.) hat eigenes bewegungsprofil (physikalisch)
  */
 public class Sprite {
-
     private PVector2D location;
     private PVector2D velocity;
-    private PVector2D acceleration;
+
+    public Sprite(PVector2D location, PVector2D velocity) {
+        this.location = location;
+        this.velocity = velocity;
+    }
+
+    public Sprite(PVector2D location) {
+        this(location, new PVector2D());
+    }
 
     public Sprite() {
-        this.location = new PVector2D();
-        this.velocity = new PVector2D();
-        this.acceleration = new PVector2D();
+        this(new PVector2D(), new PVector2D());
     }
 
     public PVector2D getLocation() {
@@ -83,19 +88,11 @@ public class Sprite {
         return velocity;
     }
 
-    public PVector2D getAcceleration() {
-        return acceleration;
-    }
-
     public void setLocation(PVector2D location) {
         this.location = location;
     }
 
     public void setVelocity(PVector2D velocity) {
         this.velocity = velocity;
-    }
-
-    public void setAcceleration(PVector2D acceleration) {
-        this.acceleration = acceleration;
     }
 }

@@ -21,15 +21,9 @@ import javax.swing.*;
  * @version 01.00 - 2001004
  */
 public class WaterWorld {
-
     private final Content content = new Content();
     private final Window window = new Window(content, content.getBgImageSize());
     private final Update gameUpdate = new Update(content);
-
-
-
-
-
 
     public WaterWorld() {
         new Timer(25, gameUpdate).start();
