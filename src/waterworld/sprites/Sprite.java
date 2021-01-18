@@ -4,6 +4,7 @@ package waterworld.sprites;
 import waterworld.utilities.PVector2D;
 
 import java.awt.*;
+import java.security.PublicKey;
 
 /*
  * Was ist ein Sprite in diesem Project:
@@ -64,26 +65,37 @@ import java.awt.*;
  */
 public class Sprite {
 
-    private final PVector2D location;
+    private PVector2D location;
     private PVector2D velocity;
     private PVector2D acceleration;
 
-    private final int globalBoundMaxWidth;
-    private final int globalBoundMaxHeight;
+    public Sprite() {
+        this.location = new PVector2D();
+        this.velocity = new PVector2D();
+        this.acceleration = new PVector2D();
+    }
 
-    public Sprite(PVector2D location, Dimension globalBound) {
+    public PVector2D getLocation() {
+        return location;
+    }
+
+    public PVector2D getVelocity() {
+        return velocity;
+    }
+
+    public PVector2D getAcceleration() {
+        return acceleration;
+    }
+
+    public void setLocation(PVector2D location) {
         this.location = location;
-        this.velocity = new PVector2D(0,0);
-        this.globalBoundMaxWidth = checkValueGreaterThanZero((int)globalBound.getWidth());
-        this.globalBoundMaxHeight = checkValueGreaterThanZero((int)globalBound.getHeight());
     }
 
-    private int checkValueGreaterThanZero(int valueToTest) {
-        if(valueToTest > 0)
-            return valueToTest;
-        return -1;
+    public void setVelocity(PVector2D velocity) {
+        this.velocity = velocity;
     }
 
-
-
+    public void setAcceleration(PVector2D acceleration) {
+        this.acceleration = acceleration;
+    }
 }

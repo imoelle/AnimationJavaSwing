@@ -3,6 +3,8 @@ package waterworld;
 import waterworld.actions.Update;
 import waterworld.content.Content;
 import waterworld.content.Window;
+import waterworld.sprites.Sprite;
+import waterworld.sprites.types.Ball;
 
 import javax.swing.*;
 
@@ -23,6 +25,11 @@ public class WaterWorld {
     private final Content content = new Content();
     private final Window window = new Window(content, content.getBgImageSize());
     private final Update gameUpdate = new Update(content);
+
+
+
+
+
 
     public WaterWorld() {
         new Timer(25, gameUpdate).start();

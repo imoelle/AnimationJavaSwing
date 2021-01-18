@@ -1,25 +1,27 @@
 package waterworld.utilities;
 
 
+import java.awt.*;
+
 /**
  * todo:    method checkForNotEqualZero has to be refactored. Unsightly solution has to be changed, but run first.
  */
 public class PVector2D {
-    private double xPosition;
-    private double yPosition;
+    private double x;
+    private double y;
 
     //=========================================================================
     // Constructors
     //=========================================================================
 
-    public PVector2D(double xPosition, double yPosition) {
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
+    public PVector2D(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
 
     public PVector2D() {
-        this.xPosition = 0.0;
-        this.yPosition = 0.0;
+        this.x = 0.0;
+        this.y = 0.0;
     }
 
     //=========================================================================
@@ -27,45 +29,45 @@ public class PVector2D {
     //=========================================================================
 
     public void add(PVector2D addend) {
-        this.xPosition += addend.xPosition;
-        this.yPosition += addend.yPosition;
+        this.x += addend.x;
+        this.y += addend.y;
     }
 
     public final PVector2D addAndCreate(PVector2D addend) {
-        return new PVector2D(this.xPosition + addend.xPosition,
-                this.yPosition + addend.yPosition);
+        return new PVector2D(this.x + addend.x,
+                this.y + addend.y);
     }
 
     public void subtractBy(PVector2D subtrahend) {
-        this.xPosition -= subtrahend.xPosition;
-        this.yPosition -= subtrahend.yPosition;
+        this.x -= subtrahend.x;
+        this.y -= subtrahend.y;
     }
 
     public final PVector2D subtractAndCreate(PVector2D subtrahend) {
-        return new PVector2D(this.xPosition - subtrahend.xPosition,
-                this.yPosition - subtrahend.yPosition);
+        return new PVector2D(this.x - subtrahend.x,
+                this.y - subtrahend.y);
     }
 
     public void multipliedWith(double scalar) {
-        this.xPosition *= scalar;
-        this.yPosition *= scalar;
+        this.x *= scalar;
+        this.y *= scalar;
     }
 
     public final PVector2D multiplyAndCreate(double scalar) {
-        return new PVector2D(this.xPosition * scalar,
-                this.yPosition * scalar);
+        return new PVector2D(this.x * scalar,
+                this.y * scalar);
     }
 
     public void dividedBy(double scalar) {
         checkForNotEqualZero(scalar);
-        this.xPosition /= scalar;
-        this.yPosition /= scalar;
+        this.x /= scalar;
+        this.y /= scalar;
     }
 
     public final PVector2D divideAndCreate(double scalar) {
         checkForNotEqualZero(scalar);
-        return new PVector2D(this.xPosition / scalar,
-                this.yPosition / scalar);
+        return new PVector2D(this.x / scalar,
+                this.y / scalar);
     }
 
     //=========================================================================
@@ -73,8 +75,8 @@ public class PVector2D {
     //=========================================================================
 
     public final double dotProduct(PVector2D theOther) {
-        return this.xPosition * theOther.xPosition +
-                this.yPosition * theOther.yPosition;
+        return this.x * theOther.x +
+                this.y * theOther.y;
     }
 
     public final double hasMagnitude() {
@@ -87,8 +89,8 @@ public class PVector2D {
 
     public final PVector2D normalize() {
         double magnitude = this.hasMagnitude();
-        return new PVector2D(this.xPosition * (1 / magnitude),
-                this.yPosition * (1 / magnitude));
+        return new PVector2D(this.x * (1 / magnitude),
+                this.y * (1 / magnitude));
     }
 
     public final double angleInRadiansTo(PVector2D theOther) {
@@ -118,8 +120,8 @@ public class PVector2D {
     }
 
     public double euclideanDistanceTo(PVector2D theOther) {
-        return Math.sqrt(squareOf(theOther.xPosition - this.xPosition) +
-                squareOf(theOther.yPosition - this.yPosition));
+        return Math.sqrt(squareOf(theOther.x - this.x) +
+                squareOf(theOther.y - this.y));
     }
 
     //=========================================================================
@@ -127,23 +129,23 @@ public class PVector2D {
     //=========================================================================
 
     private PVector2D getNewVectorBy(PVector2D source, double andFactor) {
-        return new PVector2D(source.xPosition * andFactor,
-                source.yPosition * andFactor);
+        return new PVector2D(source.x * andFactor,
+                source.y * andFactor);
     }
 
     private double xTurnedBy(double angleInRadians) {
-        return this.xPosition * Math.cos(angleInRadians) -
-                this.yPosition * Math.sin(angleInRadians);
+        return this.x * Math.cos(angleInRadians) -
+                this.y * Math.sin(angleInRadians);
     }
 
     private double yTurnedBy(double angleInRadians) {
-        return this.xPosition * Math.sin(angleInRadians) +
-                this.yPosition * Math.cos(angleInRadians);
+        return this.x * Math.sin(angleInRadians) +
+                this.y * Math.cos(angleInRadians);
     }
 
     private double vectorSquareFrom(PVector2D vector) {
-        return vector.xPosition * vector.xPosition +
-                vector.yPosition * vector.yPosition;
+        return vector.x * vector.x +
+                vector.y * vector.y;
     }
 
     private double dotProductSquareFrom(PVector2D theOther) {
@@ -170,19 +172,19 @@ public class PVector2D {
     //=========================================================================
 
     public final double getPositionX() {
-        return this.xPosition;
+        return this.x;
     }
 
     public void setPositionX(double xPosition) {
-        this.xPosition = xPosition;
+        this.x = xPosition;
     }
 
     public final double getPositionY() {
-        return this.yPosition;
+        return this.y;
     }
 
     public void setPositionY(double yPosition) {
-        this.yPosition = yPosition;
+        this.y = yPosition;
     }
 
     //=========================================================================
@@ -193,15 +195,15 @@ public class PVector2D {
     public boolean equals(Object thatObject) {
         if (thatObject instanceof PVector2D) {
             PVector2D that = (PVector2D) thatObject;
-            return (this.xPosition == that.xPosition) &&
-                    (this.yPosition == that.yPosition);
+            return (this.x == that.x) &&
+                    (this.y == that.y);
         }
         return false;
     }
 
     @Override
     public String toString() {
-        return "(" + this.xPosition + ", " +
-                this.yPosition + ")";
+        return "(" + this.x + ", " +
+                this.y + ")";
     }
 }
