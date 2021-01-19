@@ -63,36 +63,17 @@ import java.security.PublicKey;
  * 3.) hat eine Textur
  * 4.) hat eigenes bewegungsprofil (physikalisch)
  */
-public class Sprite {
-    private PVector2D location;
-    private PVector2D velocity;
-
-    public Sprite(PVector2D location, PVector2D velocity) {
-        this.location = location;
-        this.velocity = velocity;
-    }
+public abstract class Sprite {
+    PVector2D location;
 
     public Sprite(PVector2D location) {
-        this(location, new PVector2D());
-    }
-
-    public Sprite() {
-        this(new PVector2D(), new PVector2D());
-    }
-
-    public PVector2D getLocation() {
-        return location;
-    }
-
-    public PVector2D getVelocity() {
-        return velocity;
-    }
-
-    public void setLocation(PVector2D location) {
         this.location = location;
     }
 
-    public void setVelocity(PVector2D velocity) {
-        this.velocity = velocity;
+    protected PVector2D getLocation() {
+        return location;
+    }
+    protected void setLocation(PVector2D location) {
+        this.location = location;
     }
 }
