@@ -1,9 +1,11 @@
 package waterworld.sprites;
 
 
+import waterworld.utilities.ImageLoader;
 import waterworld.utilities.PVector2D;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.security.PublicKey;
 
 /*
@@ -64,16 +66,45 @@ import java.security.PublicKey;
  * 4.) hat eigenes bewegungsprofil (physikalisch)
  */
 public abstract class Sprite {
-    PVector2D location;
+    private PVector2D location;
+    private PVector2D velocity;
+    private BufferedImage image;
 
-    public Sprite(PVector2D location) {
+    public Sprite(PVector2D location, PVector2D velocity, String fileAndFileLocation) {
         this.location = location;
+        this.velocity = velocity;
+        this.image = new ImageLoader(fileAndFileLocation).getImage();
     }
 
-    protected PVector2D getLocation() {
+    public Sprite(PVector2D location, String fileAndFileLocation) {
+        this(location, new PVector2D(), fileAndFileLocation);
+    }
+
+    public Sprite(String fileAndFIleLocation) {
+        this(new PVector2D(), new PVector2D(), fileAndFIleLocation);
+    }
+
+    public PVector2D getLocation() {
         return location;
     }
-    protected void setLocation(PVector2D location) {
+
+    public PVector2D getVelocity() {
+        return velocity;
+    }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public void setLocation(PVector2D location) {
         this.location = location;
+    }
+
+    public void setVelocity(PVector2D velocity) {
+        this.velocity = velocity;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
     }
 }

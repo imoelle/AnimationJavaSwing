@@ -24,11 +24,13 @@ public class Content extends JPanel {
     private PVector2D velocity = new PVector2D(2.5,2.5);
     private PVector2D acceleration = new PVector2D(0.0001, 0.0001);
 
-    private Ball testBall = new Ball();
+    private Ball testBall = new Ball("../sprites/assets/orangeball.gif");
+
 
     public Content() {
         backGround = new ImageLoader("../content/assets/background02.gif").getImage();
         backGroundSize = new Dimension(backGround.getWidth(), backGround.getHeight());
+        testBall.setVelocity(velocity);
     }
 
     public Dimension getBgImageSize() {
@@ -39,10 +41,11 @@ public class Content extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(backGround, 0, 0, this);
-
+        g.drawImage(testBall.getImage(), (int)testBall.getLocation().getPositionX(), (int)testBall.getLocation().getPositionY(), this);
 //        g.drawImage(testBall.getTexture(), (int)testBall.getLocation().getPositionX(), (int)testBall.getLocation().getPositionY(), this);
         // create a ball set to location(0, 0)
-//        g.fillOval((int)location.getPositionX(), (int)location.getPositionY(), 10, 10);
+//        new TexturePaint(new ImageLoader("../sprites/assets/orangeball.gif").getImage(),
+//        g.fillOval((int)location.getPositionX(), (int)location.getPositionY(), 10, 10););
 
         // add a velocity to ball, so a bouncing ball is created
 //        location.add(velocity);
