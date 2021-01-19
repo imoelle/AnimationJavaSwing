@@ -1,14 +1,17 @@
 package waterworld.sprites.types;
 
 import waterworld.sprites.Sprite;
+import waterworld.utilities.ImageLoader;
 import waterworld.utilities.PVector2D;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Ball extends Sprite {
 
-    private int radius;
-    private int texture;
-
-    public Ball(PVector2D location, PVector2D velocity, PVector2D acceleration) {
-        super(location, velocity, acceleration);
+    public Ball(String fileAndFIleLocation) {
+        super(fileAndFIleLocation);
     }
 }
