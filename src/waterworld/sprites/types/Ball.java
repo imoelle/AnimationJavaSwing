@@ -11,7 +11,17 @@ import java.util.ArrayList;
 
 public class Ball extends Sprite {
 
-    public Ball(String fileAndFIleLocation) {
-        super(fileAndFIleLocation);
+    private PVector2D acceleration;
+
+    public Ball(PVector2D location, PVector2D velocity, String fileAndFIleLocation) {
+        super(location, velocity, fileAndFIleLocation);
+    }
+
+    public Ball(PVector2D location, String fileAndFileLocation) {
+        super(location, new PVector2D(), fileAndFileLocation);
+    }
+
+    public Ball(String fileAndFielLocation) {
+        super(new PVector2D(), new PVector2D(), fileAndFielLocation);
     }
 }
